@@ -1,0 +1,14 @@
+<div class="list-user">
+  <div class="users">
+    <mat-selection-list >
+      <mat-list-option *ngFor="let user of users">
+        <div>
+          <label>
+            {{user.name}}
+          </label>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div class="group-users"></div>
+</div>
