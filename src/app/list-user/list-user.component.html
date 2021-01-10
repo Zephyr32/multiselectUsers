@@ -4,7 +4,10 @@
       <mat-list-option *ngFor="let user of users">
         <div>
           <label>
-            {{user.name}}
+          group Users
+          </label>
+          <label>
+            {{user |json}}
           </label>
         </div>
       </mat-list-option>

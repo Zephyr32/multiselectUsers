@@ -7,12 +7,14 @@ import {User} from '../model/user';
   styleUrls: ['./list-user.component.scss']
 })
 export class ListUserComponent implements OnInit {
-   users: User[];
+   users: any;
    groupUsers: [];
   constructor() { }
 
   ngOnInit(): void {
-    this.users = JSON.parse(localStorage.getItem('allUsers')) as User[];
+    this.users = JSON.parse(localStorage.getItem('GroupArray'));
+    console.log(this.users);
+
   }
 
 }

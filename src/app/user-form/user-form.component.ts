@@ -22,13 +22,13 @@ export class UserFormComponent implements OnInit {
   allUsers: User[];
 
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  private groups: any;
 
   constructor() {
     this.filteredUsers = this.userCtrl.valueChanges.pipe(
       startWith(null),
       map((user: string | null) => {
           if (user) {
-            debugger
             return this._filter(user);
           }
         else {
@@ -65,13 +65,16 @@ export class UserFormComponent implements OnInit {
       return ;
     }
     this.users.push(event.option.value);
+    this.allUsers = this.allUsers.filter((user) => {
+      return user.id !== event.option.value.id;
+    });
     this.userCtrl.setValue('');
     console.log(this.users);
   }
 
-  private _filter(value: string | User): User[] {
+  private _filter(value: string ): User[] {
     console.log(value);
-    if (value.id) {
+    if ((value as unknown as User).id) {
       return ;
     }
     const filterValue = value.toLocaleLowerCase();
@@ -83,4 +86,15 @@ export class UserFormComponent implements OnInit {
 this.allUsers = JSON.parse(localStorage.getItem('allUsers'));
   }
 
+  addGroup(): void  {
+    this.groups = JSON.parse(localStorage.getItem('GroupArray'))  ;
+    if (this.groups){
+      this.groups.push(this.users);
+
+    }
+    else{
+      this.groups = [this.users];
+    }
+    localStorage.setItem('GroupArray', JSON.stringify(this.groups));
+  }
 }

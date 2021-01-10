@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "userResume"
+  "defaultProject": "userResume",
+  "cli": {
+    "analytics": false
+  }
 }
